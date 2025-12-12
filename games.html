@@ -4,13 +4,22 @@
 <meta charset="UTF-8">
 <title>Activities</title>
 <style>
+    /* Moving Background */
     body {
         background: radial-gradient(circle at top, #151519 0%, #0d0d0f 80%);
+        background-size: 200% 200%;
+        animation: moveBG 12s ease-in-out infinite;
         font-family: "Segoe UI", Arial, sans-serif;
         color: #eee;
         padding: 20px;
         margin: 0;
         overflow-x: hidden;
+    }
+
+    @keyframes moveBG {
+        0% { background-position: 50% 0%; }
+        50% { background-position: 50% 100%; }
+        100% { background-position: 50% 0%; }
     }
 
     #loadingScreen {
@@ -120,7 +129,7 @@
 <div id="buttons">Loading…</div>
 
 <script>
-const url = "GameList.txt";  // ← FIXED — loads from same folder as this HTML
+const url = "GameList.txt";
 let lines = [];
 let lastRendered = [];
 
@@ -161,8 +170,11 @@ function renderButtons(list) {
         frag.appendChild(btn);
     });
 
+    box.innerHTML = "";
+    box.appendChild(frag);
+}
 
-// Try candidate folders and open the first path that responds OK.
+// Open the game from multiple possible paths
 async function openGame(filename) {
     const candidates = [
         `activities/${filename}`,
@@ -170,7 +182,6 @@ async function openGame(filename) {
         `${filename}`
     ];
 
-    // Try HEAD requests first (works when served over http(s)).
     for (const p of candidates) {
         try {
             const resp = await fetch(p, { method: 'HEAD' });
@@ -178,29 +189,20 @@ async function openGame(filename) {
                 window.open(p, '_blank');
                 return;
             }
-        } catch (e) {
-            // network error or file:// where fetch may fail — ignore and try fallback
-        }
+        } catch (e) {}
     }
 
-    // As a fallback (or when running from file://), try opening candidates sequentially.
     for (const p of candidates) {
         try {
-            // Attempt to open; the browser will show a 404 if it doesn't exist.
             window.open(p, '_blank');
             return;
-        } catch (e) {
-            // ignore and try next
-        }
+        } catch (e) {}
     }
 
     alert('Unable to find the game file: ' + filename);
 }
-    box.innerHTML = "";
-    box.appendChild(frag);
-}
 
-// THROTTLED search
+// Throttled search
 let searchTimeout;
 document.getElementById("searchBox").addEventListener("input", function () {
     const q = this.value.toLowerCase();
