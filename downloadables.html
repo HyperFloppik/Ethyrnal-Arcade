@@ -1,39 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Downloadable Apps</title>
-    <style>
-        body {
-            background-color: #111;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
+  <meta charset="UTF-8">
+  <title>Downloadable Apps</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-        button {
-            display: inline-block;
-            padding: 10px 16px;
-            margin: 6px;
-            background: #222;
-            color: white;
-            border: 1px solid #444;
-            border-radius: 6px;
-            cursor: pointer;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-        button:hover {
-            background: #333;
-        }
-    </style>
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: #0a0a0a;
+      color: #e4e4e7;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      letter-spacing: -1px;
+      margin-bottom: 8px;
+      color: #ffffff;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: #71717a;
+      margin-bottom: 40px;
+    }
+
+    .apps {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .app {
+      background: #0f0f0f;
+      border: 1px solid #1f1f1f;
+      border-radius: 14px;
+      padding: 24px 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .app:hover {
+      background: #1a1a1a;
+      transform: translateY(-2px);
+    }
+
+    .app i {
+      font-size: 28px;
+      color: #71717a;
+    }
+
+    .app span {
+      font-size: 13px;
+      color: #71717a;
+    }
+
+    .app:hover i,
+    .app:hover span {
+      color: #e4e4e7;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 12px;
+      color: #52525b;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="container">
+    <h1>Downloads</h1>
+    <div class="subtitle">Download them apps in exe ig.</div>
 
-<button onclick="window.location.href='Downloadables/Minecraft Education Installer.exe'">
-    Minecraft Education
-</button>
+    <div class="apps">
+      <div class="app" onclick="window.location.href='Downloadables/Minecraft Education Installer.exe'">
+        <i class="fa-solid fa-cube"></i>
+        <span>Minecraft Education</span>
+      </div>
 
-<button onclick="window.location.href='/Downloadables/AutoClicker.exe'">
-    AutoClicker
-</button>
+      <div class="app" onclick="window.location.href='Downloadables/AutoClicker.exe'">
+        <i class="fa-solid fa-computer-mouse"></i>
+        <span>AutoClicker</span>
+      </div>
+    </div>
 
+    <div class="footer">
+      Epstein rapping donald truh🔥
+    </div>
+  </div>
 </body>
 </html>
