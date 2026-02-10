@@ -1,4 +1,3 @@
-games are hosted by 3kh0 on github not me
 <!DOCTYPE html>
 <html>
 <head>
@@ -85,6 +84,61 @@ body {
 }
 #importantBtn:hover {
     background: #2a1418;
+}
+
+/* ===== HELP MENU ===== */
+#helpWrapper {
+    position: relative;
+}
+
+#helpBtn {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #4da6ff;
+    background: #0f1a24;
+    color: #7fc2ff;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#helpBtn:hover {
+    background: #16283a;
+}
+
+#helpMenu {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    width: 260px;
+    background: #141418;
+    border: 1px solid #292933;
+    border-radius: 14px;
+    padding: 14px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+    display: none;
+    z-index: 2000;
+    text-align: left;
+}
+
+#helpMenu p {
+    font-size: 14px;
+    color: #ddd;
+    line-height: 1.4;
+    margin: 0 0 12px 0;
+}
+
+#helpMenu button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #292933;
+    background: #1a1a22;
+    color: white;
+    cursor: pointer;
+}
+
+#helpMenu button:hover {
+    background: #22222d;
 }
 
 /* ===== LOADING ===== */
@@ -192,6 +246,19 @@ button:hover {
     <div id="topControls">
         <input id="searchBox" type="text" placeholder="Search games...">
         <button id="importantBtn">Important</button>
+
+        <div id="helpWrapper">
+            <button id="helpBtn">Help us</button>
+            <div id="helpMenu">
+                <p>
+                    We need icons for the games to make us stand out!
+                    Submit an icon for us to put it in the button.
+                </p>
+                <button onclick="window.open('https://forms.gle/tZ21S8J6aoKjx1Yg7', '_blank')">
+                    Click me
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -282,7 +349,7 @@ searchBox.addEventListener("input", () => {
     }, 70);
 });
 
-/* IMPORTANT MODAL LOGIC */
+/* IMPORTANT MODAL */
 const importantBtn = document.getElementById("importantBtn");
 const importantModal = document.getElementById("importantModal");
 
@@ -296,6 +363,21 @@ function closeImportant() {
 
 importantModal.addEventListener("click", e => {
     if (e.target === importantModal) closeImportant();
+});
+
+/* HELP MENU */
+const helpBtn = document.getElementById("helpBtn");
+const helpMenu = document.getElementById("helpMenu");
+
+helpBtn.onclick = () => {
+    helpMenu.style.display =
+        helpMenu.style.display === "block" ? "none" : "block";
+};
+
+document.addEventListener("click", e => {
+    if (!helpBtn.contains(e.target) && !helpMenu.contains(e.target)) {
+        helpMenu.style.display = "none";
+    }
 });
 </script>
 
