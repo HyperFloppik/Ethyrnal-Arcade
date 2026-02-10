@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <style>
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: transparent;
+        font-family: Arial, sans-serif;
+      }
+
+      input {
+        width: 300px;
+        padding: 10px;
+        font-size: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-radius: 6px;
+        margin-bottom: 12px;
+        background: transparent;
+        color: white;
+      }
+
+      input::placeholder {
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      button {
+        background: transparent;
+        color: white;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 10px 24px;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.2s ease-in-out;
+      }
+
+      button:hover {
+        border-color: white;
+        color: #ddd;
+        transform: translateY(-2px);
+      }
+
+      button:active {
+        transform: translateY(0);
+        border-color: rgba(255, 255, 255, 0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <input id="urlBox" type="text" placeholder="Enter website (e.g. example.com)" />
+    <button onclick="openCustomLink()">Open Link</button>
+
+    <script>
+      function openCustomLink() {
+        let url = document.getElementById("urlBox").value.trim();
+
+        if (url === "") {
+          alert("Please enter a link.");
+          return;
+        }
+
+        // add https:// if missing
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+          url = "https://" + url;
+        }
+
+        // open blank popup
+        var win = window.open(
+          "",
+          "customWindow",
+          "width=800,height=600,resizable=yes,scrollbars=no"
+        );
+
+        // inject iframe with the link
+        var iframe = win.document.createElement("iframe");
+        iframe.style.width = "100%";
+        iframe.style.height = "100%";
+        iframe.style.border = "none";
+        iframe.src = url;
+
+        win.document.body.style.margin = "0";
+        win.document.body.style.height = "100vh";
+        win.document.body.appendChild(iframe);
+      }
+    </script>
+  </body>
+</html>
