@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scramjеt</title>
+    <title>Scramjet</title>
     <link rel="stylesheet" href="/scram/morestuff/all.min.css">
     <script src="/scram/morestuff/scramjet.all.js" defer></script>
     <script type="module">
@@ -13,14 +13,56 @@
     </script>
     <link rel="stylesheet" href="style.css">
     <script src="./script.js" defer></script>
-    <style>
 
+    <style>
+        /* Announcement Bar Styles */
+        .announcement-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(90deg, #1e90ff, #00bfff);
+            color: #fff;
+            padding: 10px 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 14px;
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            z-index: 9999;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        }
+
+        .announcement-btn {
+            background: #fff;
+            color: #1e90ff;
+            text-decoration: none;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 700;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .announcement-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(0,0,0,0.25);
+        }
+
+        /* Push page content down so it doesn't hide under the bar */
+        body {
+            padding-top: 52px;
+        }
     </style>
 </head>
 
 <body>
-    <!-- Home Button -->
-
+    <!-- Announcement Bar -->
+    <div class="announcement-bar">
+        <span>🚀 New proxy out!</span>
+        <a href="/scram/index.html" class="announcement-btn">Check it out</a>
+    </div>
 
     <div id="app"></div>
 
