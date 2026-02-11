@@ -20,12 +20,51 @@
       font-family: 'Inter', system-ui, sans-serif;
       background: #0a0a0a;
       color: #e4e4e7;
+      padding-top: 52px; /* Space for announcement bar */
     }
 
     canvas {
       position: fixed;
       inset: 0;
       z-index: 0;
+    }
+
+    /* Announcement Bar (dark style to match site) */
+    .announcement-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #0f0f0f;
+      border-bottom: 1px solid #1f1f1f;
+      color: #e4e4e7;
+      padding: 10px 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 600;
+      z-index: 9999;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+
+    .announcement-btn {
+      background: #1a1a1a;
+      color: #e4e4e7;
+      border: 1px solid #2a2a2a;
+      border-radius: 10px;
+      padding: 6px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .announcement-btn:hover {
+      background: #2a2a2a;
+      border-color: #3a3a3a;
+      transform: translateY(-1px);
     }
 
     /* Layout */
@@ -87,7 +126,7 @@
       position: fixed;
       top: 16px;
       right: 16px;
-      z-index: 3;
+      z-index: 10000; /* Increased to appear above announcement bar */
       background: #0f0f0f;
       border: 1px solid #1f1f1f;
       border-radius: 10px;
@@ -108,7 +147,7 @@
       position: fixed;
       top: 58px;
       right: 16px;
-      z-index: 3;
+      z-index: 10000;
       background: #0f0f0f;
       border: 1px solid #1f1f1f;
       border-radius: 14px;
@@ -139,109 +178,117 @@
 
 <body>
 
-<canvas id="bg"></canvas>
-
-<button class="settings-btn" onclick="toggleSettings()">
-  <i class="fa-solid fa-gear"></i>
-</button>
-
-<div class="settings-menu" id="settingsMenu">
-  <button onclick="cloakTab()">Cloaking (Normal)</button>
-  <button onclick="buffedCloak()">Cloaking (Buffed)</button>
-</div>
-
-<div class="container">
-  <h1>Ethyrnal's Arcade</h1>
-
-  <div class="menu">
-    <button onclick="window.location.href='games.html'">
-      <img src="/icons/gamepad_pixian_ai.png">
-    </button>
-
-    <button onclick="window.location.href='downloadables.html'">
-      <img src="/icons/download-square-svgrepo-com.svg">
-    </button>
-
-    <button onclick="window.location.href='apps.html'">
-      <img src="/icons/apps-svgrepo-com.svg">
-    </button>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+      <span>🚀 New proxy out!</span>
+      <button class="announcement-btn" onclick="window.location.href='/scram/index.html'">
+          Check it out
+      </button>
   </div>
-</div>
 
-<script>
-  const canvas = document.getElementById("bg");
-  const ctx = canvas.getContext("2d");
+  <canvas id="bg"></canvas>
 
-  let dots = [];
-  const DOT_COUNT = 120;
+  <button class="settings-btn" onclick="toggleSettings()">
+    <i class="fa-solid fa-gear"></i>
+  </button>
 
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener("resize", resize);
-  resize();
+  <div class="settings-menu" id="settingsMenu">
+    <button onclick="cloakTab()">Cloaking (Normal)</button>
+    <button onclick="buffedCloak()">Cloaking (Buffed)</button>
+  </div>
 
-  for (let i = 0; i < DOT_COUNT; i++) {
-    dots.push({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 1,
-      speed: Math.random() * 0.5 + 0.2
-    });
-  }
+  <div class="container">
+    <h1>Ethyrnal's Arcade</h1>
 
-  function animate() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#3f3f46";
+    <div class="menu">
+      <button onclick="window.location.href='games.html'">
+        <img src="/icons/gamepad_pixian_ai.png">
+      </button>
 
-    for (const dot of dots) {
-      dot.y -= dot.speed;
-      if (dot.y < 0) dot.y = canvas.height;
+      <button onclick="window.location.href='downloadables.html'">
+        <img src="/icons/download-square-svgrepo-com.svg">
+      </button>
 
-      ctx.beginPath();
-      ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
-      ctx.fill();
+      <button onclick="window.location.href='apps.html'">
+        <img src="/icons/apps-svgrepo-com.svg">
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("bg");
+    const ctx = canvas.getContext("2d");
+
+    let dots = [];
+    const DOT_COUNT = 120;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener("resize", resize);
+    resize();
+
+    for (let i = 0; i < DOT_COUNT; i++) {
+      dots.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 2 + 1,
+        speed: Math.random() * 0.5 + 0.2
+      });
     }
 
-    requestAnimationFrame(animate);
-  }
-  animate();
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "#3f3f46";
 
-  function toggleSettings() {
-    const menu = document.getElementById("settingsMenu");
-    menu.style.display = menu.style.display === "flex" ? "none" : "flex";
-  }
+      for (const dot of dots) {
+        dot.y -= dot.speed;
+        if (dot.y < 0) dot.y = canvas.height;
 
-  function cloakTab() {
-    const title = "Ethyrnal's Arcade";
-    const url = window.location.href;
+        ctx.beginPath();
+        ctx.arc(dot.x, dot.y, dot.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
-    const cloak = window.open();
-    cloak.document.title = "Totally IXL | " + title;
-    cloak.document.body.style.margin = "0";
-    cloak.document.body.innerHTML = `
-      <iframe src="${url}" style="width:100vw;height:100vh;border:none;"></iframe>
-    `;
-  }
+      requestAnimationFrame(animate);
+    }
+    animate();
 
-  function buffedCloak() {
-    const title = "Ethyrnal's Arcade";
-    const url = window.location.href;
+    function toggleSettings() {
+      const menu = document.getElementById("settingsMenu");
+      menu.style.display = menu.style.display === "flex" ? "none" : "flex";
+    }
 
-    const cloak = window.open(
-      "",
-      "_blank",
-      "width=1200,height=800,menubar=no,toolbar=no,location=no,status=no"
-    );
+    function cloakTab() {
+      const title = "Ethyrnal's Arcade";
+      const url = window.location.href;
 
-    cloak.document.title = "Totally IXL | " + title;
-    cloak.document.body.style.margin = "0";
-    cloak.document.body.innerHTML = `
-      <iframe src="${url}" style="width:100vw;height:100vh;border:none;"></iframe>
-    `;
-  }
-</script>
+      const cloak = window.open();
+      cloak.document.title = "Totally IXL | " + title;
+      cloak.document.body.style.margin = "0";
+      cloak.document.body.innerHTML = `
+        <iframe src="${url}" style="width:100vw;height:100vh;border:none;"></iframe>
+      `;
+    }
+
+    function buffedCloak() {
+      const title = "Ethyrnal's Arcade";
+      const url = window.location.href;
+
+      const cloak = window.open(
+        "",
+        "_blank",
+        "width=1200,height=800,menubar=no,toolbar=no,location=no,status=no"
+      );
+
+      cloak.document.title = "Totally IXL | " + title;
+      cloak.document.body.style.margin = "0";
+      cloak.document.body.innerHTML = `
+        <iframe src="${url}" style="width:100vw;height:100vh;border:none;"></iframe>
+      `;
+    }
+  </script>
 
 </body>
 </html>
