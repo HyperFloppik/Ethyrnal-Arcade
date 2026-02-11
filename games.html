@@ -1,233 +1,237 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Activities</title>
+<title>Gаmes</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
 <style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0a0a0a;
+  color: #e4e4e7;
+}
+
+/* ===== BACKGROUND ===== */
 body {
-    background:
-        radial-gradient(2px 2px at 20px 30px, white, transparent),
-        radial-gradient(2px 2px at 80px 120px, white, transparent),
-        radial-gradient(2px 2px at 150px 90px, white, transparent),
-        radial-gradient(2px 2px at 300px 200px, white, transparent),
-        radial-gradient(2px 2px at 500px 400px, white, transparent);
-    background-size: 600px 600px;
-    animation: moveDots 35s linear infinite;
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: #eee;
-    margin: 0;
-    padding-top: 80px;
-    background-color: #0d0d10;
-    text-align: center;
+  background:
+    radial-gradient(2px 2px at 20px 30px, #3f3f46, transparent),
+    radial-gradient(2px 2px at 80px 120px, #3f3f46, transparent),
+    radial-gradient(2px 2px at 150px 90px, #3f3f46, transparent),
+    radial-gradient(2px 2px at 300px 200px, #3f3f46, transparent),
+    radial-gradient(2px 2px at 500px 400px, #3f3f46, transparent);
+  background-size: 600px 600px;
+  animation: moveDots 40s linear infinite;
+  padding-top: 80px;
 }
 
 @keyframes moveDots {
-    from { background-position: 0 0; }
-    to { background-position: -600px 600px; }
+  from { background-position: 0 0; }
+  to { background-position: -600px 600px; }
 }
 
 /* ===== TOP BAR ===== */
 #gameTopBar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background: #1a1a22;
-    border-bottom: 1px solid #292933;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    box-sizing: border-box;
-    z-index: 1000;
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 64px;
+  background: rgba(15,15,15,0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #1f1f1f;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  z-index: 1000;
 }
 
 #arcadeTitle {
-    font-size: 20px;
-    font-weight: bold;
-    color: white;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
 }
 
 #topControls {
-    display: flex;
-    gap: 10px;
-    align-items: center;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
+/* Search */
 #searchBox {
-    width: 100%;
-    max-width: 300px;
-    padding: 10px 12px;
-    font-size: 15px;
-    border-radius: 10px;
-    border: 1px solid #292933;
-    background: #141418;
-    color: white;
+  max-width: 280px;
+  padding: 10px 14px;
+  font-size: 14px;
+  border-radius: 12px;
+  border: 1px solid #1f1f1f;
+  background: #0f0f0f;
+  color: #e4e4e7;
+}
+
+#searchBox::placeholder {
+  color: #52525b;
 }
 
 #searchBox:focus {
-    outline: none;
-    border-color: white;
-    background: #1a1a22;
+  outline: none;
+  border-color: #3f3f46;
 }
 
-#importantBtn {
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid #ff5555;
-    background: #1a0f12;
-    color: #ff7777;
-    cursor: pointer;
-    font-size: 14px;
+/* Buttons */
+#importantBtn,
+#helpBtn {
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1px solid #1f1f1f;
+  background: #0f0f0f;
+  color: #71717a;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all .15s;
 }
-#importantBtn:hover {
-    background: #2a1418;
+
+#importantBtn:hover,
+#helpBtn:hover {
+  background: #1a1a1a;
+  color: #ffffff;
 }
 
 /* ===== HELP MENU ===== */
 #helpWrapper {
-    position: relative;
-}
-
-#helpBtn {
-    padding: 10px 14px;
-    border-radius: 10px;
-    border: 1px solid #4da6ff;
-    background: #0f1a24;
-    color: #7fc2ff;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-#helpBtn:hover {
-    background: #16283a;
+  position: relative;
 }
 
 #helpMenu {
-    position: absolute;
-    top: 52px;
-    right: 0;
-    width: 260px;
-    background: #141418;
-    border: 1px solid #292933;
-    border-radius: 14px;
-    padding: 14px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    display: none;
-    z-index: 2000;
-    text-align: left;
+  position: absolute;
+  top: 52px;
+  right: 0;
+  width: 260px;
+  background: #0f0f0f;
+  border: 1px solid #1f1f1f;
+  border-radius: 16px;
+  padding: 14px;
+  display: none;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
 #helpMenu p {
-    font-size: 14px;
-    color: #ddd;
-    line-height: 1.4;
-    margin: 0 0 12px 0;
+  font-size: 13px;
+  color: #a1a1aa;
+  line-height: 1.4;
+  margin-bottom: 12px;
 }
 
 #helpMenu button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    border: 1px solid #292933;
-    background: #1a1a22;
-    color: white;
-    cursor: pointer;
+  width: 100%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #1f1f1f;
+  background: #1a1a1a;
+  color: white;
+  cursor: pointer;
 }
 
 #helpMenu button:hover {
-    background: #22222d;
+  background: #27272a;
 }
 
 /* ===== LOADING ===== */
 #loadingScreen {
-    position: fixed;
-    inset: 0;
-    background: #0d0d0f;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
+  position: fixed;
+  inset: 0;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
 }
 
 .loader {
-    width: 48px;
-    height: 48px;
-    border: 4px solid #222;
-    border-top-color: white;
-    border-radius: 50%;
-    animation: spin .45s linear infinite;
+  width: 36px;
+  height: 36px;
+  border: 2px solid #1f1f1f;
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin .6s linear infinite;
 }
-@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
 /* ===== BUTTON GRID ===== */
 #buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-    justify-content: center;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  padding: 20px;
+  max-width: 1100px;
+  margin: auto;
 }
 
-button {
-    background: #141418;
-    color: white;
-    border: 1px solid #292933;
-    padding: 13px 20px;
-    border-radius: 14px;
-    cursor: pointer;
-    font-size: 15px;
-    min-width: 150px;
-    transition: background .15s, transform .1s;
+#buttons button {
+  background: #0f0f0f;
+  color: #e4e4e7;
+  border: 1px solid #1f1f1f;
+  padding: 14px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all .15s;
 }
 
-button:hover {
-    background: #1f1f29;
-    transform: translateY(-2px);
+#buttons button:hover {
+  background: #1a1a1a;
+  transform: translateY(-3px);
 }
 
 /* ===== IMPORTANT MODAL ===== */
 #importantModal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.65);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 5000;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 5000;
 }
 
 #importantBox {
-    background: #141418;
-    border: 1px solid #ff5555;
-    border-radius: 16px;
-    padding: 22px 24px;
-    max-width: 460px;
-    text-align: center;
-    box-shadow: 0 0 25px rgba(255,85,85,0.25);
+  background: #0f0f0f;
+  border: 1px solid #3f3f46;
+  border-radius: 18px;
+  padding: 24px;
+  max-width: 460px;
+  text-align: center;
 }
 
 #importantBox h3 {
-    margin-top: 0;
-    color: #ff7777;
+  margin-top: 0;
+  color: #ffffff;
 }
 
 #importantBox p {
-    color: #ddd;
-    line-height: 1.5;
+  color: #a1a1aa;
+  line-height: 1.5;
 }
 
 #importantBox button {
-    margin-top: 16px;
-    padding: 10px 18px;
-    border-radius: 12px;
-    border: 1px solid #292933;
-    background: #1a1a22;
-    color: white;
-    cursor: pointer;
+  margin-top: 16px;
+  padding: 10px 18px;
+  border-radius: 14px;
+  border: 1px solid #1f1f1f;
+  background: #1a1a1a;
+  color: white;
+  cursor: pointer;
 }
 </style>
 </head>
@@ -236,30 +240,30 @@ button:hover {
 
 <!-- LOADING -->
 <div id="loadingScreen">
-    <div class="loader"></div>
-    <p style="margin-top:14px;color:#777;">Loading…</p>
+  <div class="loader"></div>
+  <p style="margin-top:14px;color:#71717a;">Loading…</p>
 </div>
 
 <!-- TOP BAR -->
 <div id="gameTopBar">
-    <div id="arcadeTitle">Ethyrnal's Arcade</div>
-    <div id="topControls">
-        <input id="searchBox" type="text" placeholder="Search games...">
-        <button id="importantBtn">Important</button>
+  <div id="arcadeTitle">Ethyrnal's Arcade</div>
+  <div id="topControls">
+    <input id="searchBox" type="text" placeholder="Search games...">
+    <button id="importantBtn">Important</button>
 
-        <div id="helpWrapper">
-            <button id="helpBtn">Help us</button>
-            <div id="helpMenu">
-                <p>
-                    We need icons for the games to make us stand out!
-                    Submit an icon for us to put it in the button.
-                </p>
-                <button onclick="window.open('https://forms.gle/tZ21S8J6aoKjx1Yg7', '_blank')">
-                    Click me
-                </button>
-            </div>
-        </div>
+    <div id="helpWrapper">
+      <button id="helpBtn">Help us</button>
+      <div id="helpMenu">
+        <p>
+          We need icons for the games to make us stand out!
+          Submit an icon for us to put it in the button.
+        </p>
+        <button onclick="window.open('https://forms.gle/tZ21S8J6aoKjx1Yg7','_blank')">
+          Submit icon
+        </button>
+      </div>
     </div>
+  </div>
 </div>
 
 <!-- GAME BUTTONS -->
@@ -267,14 +271,14 @@ button:hover {
 
 <!-- IMPORTANT MODAL -->
 <div id="importantModal">
-    <div id="importantBox">
-        <h3>Important</h3>
-        <p>
-            Our website does not have "Viruses", if any game says extracting data,
-            it is extracting the game data you dumbass.
-        </p>
-        <button onclick="closeImportant()">OK</button>
-    </div>
+  <div id="importantBox">
+    <h3>Important</h3>
+    <p>
+      Our website does not have viruses.
+      If a game says “extracting data”, it is extracting game files.
+    </p>
+    <button onclick="closeImportant()">OK</button>
+  </div>
 </div>
 
 <script>
@@ -288,96 +292,90 @@ const buttonsEl = document.getElementById("buttons");
 fetch(url)
   .then(r => r.text())
   .then(text => {
-      lines = text.split("\n").filter(l => l.trim() !== "");
-      renderButtons(lines);
-      document.getElementById("loadingScreen").remove();
+    lines = text.split("\n").filter(l => l.trim());
+    renderButtons(lines);
+    document.getElementById("loadingScreen").remove();
   })
   .catch(() => {
-      buttonsEl.textContent = "Error loading GameList.txt";
-      document.getElementById("loadingScreen").remove();
+    buttonsEl.textContent = "Error loading GameList.txt";
+    document.getElementById("loadingScreen").remove();
   });
 
 function cleanName(original) {
-    let n = original.trim();
-    if (n.toLowerCase().endsWith(".html")) n = n.slice(0, -5);
-    if (n.toLowerCase().startsWith("cl")) n = n.slice(2);
-    return n.charAt(0).toUpperCase() + n.slice(1);
+  let n = original.trim();
+  if (n.toLowerCase().endsWith(".html")) n = n.slice(0, -5);
+  if (n.toLowerCase().startsWith("cl")) n = n.slice(2);
+  return n.charAt(0).toUpperCase() + n.slice(1);
 }
 
 function renderButtons(list) {
-    if (JSON.stringify(list) === JSON.stringify(lastRendered)) return;
-    lastRendered = [...list];
-    buttonsEl.innerHTML = "";
+  if (JSON.stringify(list) === JSON.stringify(lastRendered)) return;
+  lastRendered = [...list];
+  buttonsEl.innerHTML = "";
 
-    list.forEach(original => {
-        const btn = document.createElement("button");
-        btn.textContent = cleanName(original);
-        btn.onclick = () => openGame(original.trim());
-        buttonsEl.appendChild(btn);
-    });
+  list.forEach(original => {
+    const btn = document.createElement("button");
+    btn.textContent = cleanName(original);
+    btn.onclick = () => openGame(original.trim());
+    buttonsEl.appendChild(btn);
+  });
 }
 
 async function openGame(filename) {
-    const candidates = [
-        `activities/${filename}`,
-        `activities2/${filename}`,
-        filename
-    ];
+  const candidates = [
+    `activities/${filename}`,
+    `activities2/${filename}`,
+    filename
+  ];
 
-    for (const p of candidates) {
-        try {
-            const r = await fetch(p, { method: "HEAD" });
-            if (r.ok) {
-                window.open(p, "_blank");
-                return;
-            }
-        } catch {}
-    }
-    window.open(filename, "_blank");
+  for (const p of candidates) {
+    try {
+      const r = await fetch(p, { method: "HEAD" });
+      if (r.ok) {
+        window.open(p, "_blank");
+        return;
+      }
+    } catch {}
+  }
+  window.open(filename, "_blank");
 }
 
 let searchTimeout;
 searchBox.addEventListener("input", () => {
-    clearTimeout(searchTimeout);
-    const q = searchBox.value.toLowerCase();
-    searchTimeout = setTimeout(() => {
-        const filtered = lines.filter(l =>
-            cleanName(l).toLowerCase().includes(q) ||
-            l.toLowerCase().includes(q)
-        );
-        renderButtons(filtered);
-    }, 70);
+  clearTimeout(searchTimeout);
+  const q = searchBox.value.toLowerCase();
+  searchTimeout = setTimeout(() => {
+    renderButtons(lines.filter(l =>
+      cleanName(l).toLowerCase().includes(q) ||
+      l.toLowerCase().includes(q)
+    ));
+  }, 70);
 });
 
-/* IMPORTANT MODAL */
-const importantBtn = document.getElementById("importantBtn");
 const importantModal = document.getElementById("importantModal");
-
-importantBtn.onclick = () => {
-    importantModal.style.display = "flex";
+document.getElementById("importantBtn").onclick = () => {
+  importantModal.style.display = "flex";
 };
 
 function closeImportant() {
-    importantModal.style.display = "none";
+  importantModal.style.display = "none";
 }
 
-importantModal.addEventListener("click", e => {
-    if (e.target === importantModal) closeImportant();
-});
+importantModal.onclick = e => {
+  if (e.target === importantModal) closeImportant();
+};
 
-/* HELP MENU */
 const helpBtn = document.getElementById("helpBtn");
 const helpMenu = document.getElementById("helpMenu");
 
 helpBtn.onclick = () => {
-    helpMenu.style.display =
-        helpMenu.style.display === "block" ? "none" : "block";
+  helpMenu.style.display = helpMenu.style.display === "block" ? "none" : "block";
 };
 
 document.addEventListener("click", e => {
-    if (!helpBtn.contains(e.target) && !helpMenu.contains(e.target)) {
-        helpMenu.style.display = "none";
-    }
+  if (!helpBtn.contains(e.target) && !helpMenu.contains(e.target)) {
+    helpMenu.style.display = "none";
+  }
 });
 </script>
 
