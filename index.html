@@ -20,7 +20,7 @@
       font-family: 'Inter', system-ui, sans-serif;
       background: #0a0a0a;
       color: #e4e4e7;
-      padding-top: 52px; /* Space for announcement bar */
+      padding-top: 52px;
     }
 
     canvas {
@@ -29,21 +29,19 @@
       z-index: 0;
     }
 
-    /* Announcement Bar (dark style to match site) */
     .announcement-bar {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
+      height: 52px;
       background: #0f0f0f;
       border-bottom: 1px solid #1f1f1f;
       color: #e4e4e7;
-      padding: 10px 16px;
       display: flex;
       justify-content: center;
       align-items: center;
       gap: 12px;
-      font-family: 'Inter', system-ui, sans-serif;
       font-weight: 600;
       z-index: 9999;
       box-shadow: 0 2px 8px rgba(0,0,0,0.5);
@@ -67,7 +65,6 @@
       transform: translateY(-1px);
     }
 
-    /* Layout */
     .container {
       position: relative;
       z-index: 1;
@@ -86,10 +83,16 @@
       color: #ffffff;
     }
 
-    /* Menu */
     .menu {
       display: flex;
-      gap: 20px;
+      gap: 40px;
+    }
+
+    .menu-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
     }
 
     .menu button {
@@ -110,23 +113,33 @@
       transform: translateY(-4px);
     }
 
-    .menu img {
+    .menu svg {
       width: 46px;
       height: 46px;
-      filter: brightness(0) invert(0.7);
-      transition: filter 0.15s;
+      color: #71717a;
+      transition: color 0.15s ease;
     }
 
-    .menu button:hover img {
-      filter: brightness(0) invert(1);
+    .menu button:hover svg {
+      color: #ffffff;
     }
 
-    /* Settings button */
+    .menu-label {
+      font-size: 14px;
+      color: #71717a;
+      transition: color 0.15s ease;
+    }
+
+    .menu button:hover + .menu-label {
+      color: #ffffff;
+    }
+
     .settings-btn {
       position: fixed;
-      top: 16px;
+      top: 26px;
       right: 16px;
-      z-index: 10000; /* Increased to appear above announcement bar */
+      transform: translateY(-50%);
+      z-index: 10000;
       background: #0f0f0f;
       border: 1px solid #1f1f1f;
       border-radius: 10px;
@@ -142,7 +155,6 @@
       color: #e4e4e7;
     }
 
-    /* Settings menu */
     .settings-menu {
       position: fixed;
       top: 58px;
@@ -178,12 +190,11 @@
 
 <body>
 
-  <!-- Announcement Bar -->
   <div class="announcement-bar">
-      <span>New proxy out!</span>
-      <button class="announcement-btn" onclick="window.location.href='/scram/index.html'">
-          Check it out
-      </button>
+    <span>New proxy out!</span>
+    <button class="announcement-btn" onclick="window.location.href='/scram/index.html'">
+      Check it out
+    </button>
   </div>
 
   <canvas id="bg"></canvas>
@@ -201,17 +212,53 @@
     <h1>Ethyrnal's Arcade</h1>
 
     <div class="menu">
-      <button onclick="window.location.href='games.html'">
-        <img src="icons/gamepad_pixian_ai.png">
-      </button>
 
-      <button onclick="window.location.href='downloadables.html'">
-        <img src="icons/download-square-svgrepo-com.svg">
-      </button>
+      <!-- Games -->
+      <div class="menu-item">
+        <button onclick="window.location.href='games.html'">
+          <svg viewBox="0 -4 24 24" fill="currentColor"
+               xmlns="http://www.w3.org/2000/svg"
+               preserveAspectRatio="xMinYMin">
+            <path d='M7 5V4a1 1 0 1 0-2 0v1H4a1 1 0 1 0 0 2h1v1a1 1 0 1 0 2 0V7h1a1 1 0 1 0 0-2H7zm2.318-4h5.364A6 6 0 0 1 24 6c0 3.314-2.686 10-6 10-1.976 0-3.729-2.378-4.822-5h-2.356C9.73 13.622 7.976 16 6 16 2.686 16 0 9.314 0 6a6 6 0 0 1 9.318-5zM18 5a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-2 2a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm4 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-2 2a1 1 0 1 0 0-2 1 1 0 0 0 0 2z'/>
+          </svg>
+        </button>
+        <div class="menu-label">Games</div>
+      </div>
 
-      <button onclick="window.location.href='apps.html'">
-        <img src="icons/apps-svgrepo-com.svg">
-      </button>
+      <!-- Downloadables -->
+      <div class="menu-item">
+        <button onclick="window.location.href='downloadables.html'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 7L12 14M12 14L15 11M12 14L9 11"
+                  stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 17H12H8"
+                  stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C21.5093 4.43821 21.8356 5.80655 21.9449 8"
+                  stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="menu-label">Downloadables</div>
+      </div>
+
+      <!-- Apps -->
+      <div class="menu-item">
+        <button onclick="window.location.href='apps.html'">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M14 6.5H21M17.5 3V10"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"/>
+            <path d="M3 6.5C3 3 3 3 6.5 3C10 3 10 3 10 6.5C10 10 10 10 6.5 10C3 10 3 10 3 6.5Z"
+                  stroke-width="2"/>
+            <path d="M3 17.5C3 14 3 14 6.5 14C10 14 10 14 10 17.5C10 21 10 21 6.5 21C3 21 3 21 3 17.5Z"
+                  stroke-width="2"/>
+            <path d="M14 17.5C14 14 14 14 17.5 14C21 14 21 14 21 17.5C21 21 21 21 17.5 21C14 21 14 21 14 17.5Z"
+                  stroke-width="2"/>
+          </svg>
+        </button>
+        <div class="menu-label">Apps</div>
+      </div>
+
     </div>
   </div>
 
@@ -261,32 +308,22 @@
     }
 
     function cloakTab() {
-      const title = "Ethyrnal's Arcade";
       const url = window.location.href;
-
       const cloak = window.open();
-      cloak.document.title = "Totally IXL | " + title;
+      cloak.document.title = "Totally IXL | Ethyrnal's Arcade";
       cloak.document.body.style.margin = "0";
-      cloak.document.body.innerHTML = `
-        <iframe src="${url}" style="width:100vw;height:100vh;border:none;"></iframe>
-      `;
+      cloak.document.body.innerHTML =
+        `<iframe src="${url}" style="width:100vw;height:100vh;border:none;"></iframe>`;
     }
 
     function buffedCloak() {
-      const title = "Ethyrnal's Arcade";
       const url = window.location.href;
-
-      const cloak = window.open(
-        "",
-        "_blank",
-        "width=1200,height=800,menubar=no,toolbar=no,location=no,status=no"
-      );
-
-      cloak.document.title = "Totally IXL | " + title;
+      const cloak = window.open("", "_blank",
+        "width=1200,height=800,menubar=no,toolbar=no,location=no,status=no");
+      cloak.document.title = "Totally IXL | Ethyrnal's Arcade";
       cloak.document.body.style.margin = "0";
-      cloak.document.body.innerHTML = `
-        <iframe src="${url}" style="width:100vw;height:100vh;border:none;"></iframe>
-      `;
+      cloak.document.body.innerHTML =
+        `<iframe src="${url}" style="width:100vw;height:100vh;border:none;"></iframe>`;
     }
   </script>
 
